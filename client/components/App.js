@@ -8,7 +8,7 @@ export default class App extends Component {
 		return (
 			<Router>
 				<h1>Acme Product Managers</h1>
-				<Route render={() => <Nav />} />
+				<Route render={({ location }) => <Nav location={location} />} />
 			</Router>
 		);
 	}

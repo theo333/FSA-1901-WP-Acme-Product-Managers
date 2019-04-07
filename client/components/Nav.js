@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = ({ location }) => {
+	const { pathname } = location;
 	const pages = [
 		{ key: 1, url: '/', name: 'Home' },
 		{ key: 2, url: '/products', name: 'Products' },
@@ -13,7 +14,10 @@ const Nav = () => {
 				const { key, url, name } = page;
 				return (
 					<li key={key} className='nav-item'>
-						<Link to={url} className='nav-link'>
+						<Link
+							to={url}
+							className={`nav-link${url === pathname ? ' active' : ''}`}
+						>
 							{name}
 						</Link>
 					</li>
