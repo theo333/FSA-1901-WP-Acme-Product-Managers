@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Nav from './Nav';
 import { fetchUsers, fetchProducts } from '../store';
-import Managers from './Managers';
-import Products from './Products';
+import Nav from './Nav';
 import Home from './Home';
+import Products from './Products';
+import Managers from './Managers';
 
 class App extends Component {
 	constructor(props) {
@@ -25,11 +25,6 @@ class App extends Component {
 	render() {
 		const { products } = this.props;
 
-		//
-		// const managerOpenings = products => {
-		// 	const productsNoManagers = products.filter(product => !product.managerId);
-		// 	return productsNoManagers.length > 0;
-		// };
 		const openings = this.managerOpenings(products);
 		return (
 			<Router>
@@ -37,9 +32,9 @@ class App extends Component {
 				<Route render={({ location }) => <Nav location={location} />} />
 				<Switch>
 					<Route exact path='/' render={() => <Home openings={openings} />} />
-					<Route path='/users' component={Managers} />
 					<Route exact path='/products' render={() => <Products />} />
 					<Route path='/products:id' render={() => <Products />} />
+					<Route path='/users' component={Managers} />
 				</Switch>
 			</Router>
 		);

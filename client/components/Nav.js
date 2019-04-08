@@ -1,13 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Nav = ({ location }) => {
+import findManagers from '../helperFunctions';
+
+const Nav = ({ location, users, products }) => {
 	const { pathname } = location;
+	const managersCount = findManagers(users, products).length;
 	const pages = [
 		{ key: 1, url: '/', name: 'Home' },
 		{ key: 2, url: '/products', name: 'Products' },
 		{ key: 3, url: '/users', name: 'Managers' }
 	];
+
 	return (
 		<ul className='nav nav-tabs'>
 			{pages.map(page => {
@@ -19,6 +24,7 @@ const Nav = ({ location }) => {
 							className={`nav-link${url === pathname ? ' active' : ''}`}
 						>
 							{name}
+							{key === 3 ? ` (${managersCount})` : ''}
 						</Link>
 					</li>
 				);
@@ -27,4 +33,11 @@ const Nav = ({ location }) => {
 	);
 };
 
-export default Nav;
+const mapStateToProps = state => {
+	return {
+		users: state.users,
+		products: state.products
+	};
+};
+
+export default connect(mapStateToProps)(Nav);
