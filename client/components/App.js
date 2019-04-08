@@ -17,13 +17,26 @@ class App extends Component {
 		this.props.fetchProducts();
 	}
 
+	managerOpenings = products => {
+		const productsNoManagers = products.filter(product => !product.managerId);
+		return productsNoManagers.length > 0;
+	};
+
 	render() {
+		const { products } = this.props;
+
+		//
+		// const managerOpenings = products => {
+		// 	const productsNoManagers = products.filter(product => !product.managerId);
+		// 	return productsNoManagers.length > 0;
+		// };
+		const openings = this.managerOpenings(products);
 		return (
 			<Router>
 				<h1>Acme Product Managers</h1>
 				<Route render={({ location }) => <Nav location={location} />} />
 				<Switch>
-					<Route exact path='/' render={() => <Home />} />
+					<Route exact path='/' render={() => <Home openings={openings} />} />
 					<Route path='/users' render={() => <Managers />} />
 					<Route exact path='/products' render={() => <Products />} />
 					<Route path='/products:id' render={() => <Products />} />
@@ -33,6 +46,12 @@ class App extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		products: state.products
+	};
+};
+
 const mapDispatchToProps = dispatch => {
 	return {
 		fetchUsers: () => dispatch(fetchUsers()),
@@ -41,6 +60,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(App);

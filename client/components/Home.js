@@ -2,11 +2,15 @@
 
 import React from 'react';
 
-const Home = () => {
+const Home = ({ openings }) => {
 	return (
-		<p>
-			We <strong>HAVE / DO NOT HAVE</strong> openings for Product Managers!
-		</p>
+		<div>
+			We
+			<span style={{ fontWeight: 600 }}>
+				{openings ? ' HAVE ' : ' DO NOT HAVE '}
+			</span>
+			openings for Product Managers!
+		</div>
 	);
 };
 
