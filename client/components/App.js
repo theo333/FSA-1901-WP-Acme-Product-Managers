@@ -6,7 +6,7 @@ import Nav from './Nav';
 import { fetchUsers, fetchProducts } from '../store';
 import Managers from './Managers';
 import Products from './Products';
-import Product from './Product';
+import Home from './Home';
 
 class App extends Component {
 	constructor(props) {
