@@ -37,7 +37,7 @@ class App extends Component {
 				<Route render={({ location }) => <Nav location={location} />} />
 				<Switch>
 					<Route exact path='/' render={() => <Home openings={openings} />} />
-					<Route path='/users' render={() => <Managers />} />
+					<Route path='/users' component={Managers} />
 					<Route exact path='/products' render={() => <Products />} />
 					<Route path='/products:id' render={() => <Products />} />
 				</Switch>

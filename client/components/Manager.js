@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const Manager = ({ name }) => {
-	return <Fragment>{name}</Fragment>;
+	return <li>{name}</li>;
 };
 
 export default Manager;

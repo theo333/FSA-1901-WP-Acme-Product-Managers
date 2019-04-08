@@ -1,28 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Manager from './Manager';
 
-// create findManagers(users, products)
+class Managers extends Component {
+	findManagers = (users, products) => {
+		return users.reduce((acc, user) => {
+			products.forEach(product => {
+				if (user.id === product.managerId) {
+					acc.push(user);
+				}
+			});
+			return acc;
+		}, []);
+	};
 
-const Managers = ({ managers }) => {
-	// console.log('managers: ' + JSON.stringify(managers, null, 3));
-	return (
-		<ul className=''>
-			{managers.map(manager => {
-				return (
-					<li key={manager.name}>
-						<Manager name={manager.name} />
-					</li>
-				);
-			})}
-		</ul>
-	);
-};
+	render() {
+		const { users, products } = this.props;
+		const managers = this.findManagers(users, products);
+		return (
+			<ul className=''>
+				{managers.map(manager => {
+					const { id, name } = manager;
+					return <Manager key={id} name={name} />;
+				})}
+			</ul>
+		);
+	}
+}
 
 const mapStateToProps = state => {
 	return {
-		managers: state.users
+		users: state.users,
+		products: state.products
 	};
 };
 
