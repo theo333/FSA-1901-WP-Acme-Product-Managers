@@ -2,22 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Manager from './Manager';
+import findManagers from '../helperFunctions';
 
 class Managers extends Component {
-	findManagers = (users, products) => {
-		return users.reduce((acc, user) => {
-			products.forEach(product => {
-				if (user.id === product.managerId) {
-					acc.push(user);
-				}
-			});
-			return acc;
-		}, []);
-	};
-
 	render() {
 		const { users, products } = this.props;
-		const managers = this.findManagers(users, products);
+		const managers = findManagers(users, products);
 		return (
 			<ul className=''>
 				{managers.map(manager => {
