@@ -8,6 +8,11 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
+app.all('*', (req, res, next) => {
+	console.log(`Requested Path: ${req.method} ${req.path}`);
+	next();
+});
+
 app.get('/app.js', (req, res, next) =>
 	res.sendFile(path.join(__dirname, '../dist', 'main.js'))
 );
@@ -34,6 +39,11 @@ app.put('/api/products/:id', (req, res, next) => {
 		.then(product => product.update(req.body))
 		.then(updatedProduct => res.status(200).send(updatedProduct))
 		.catch(next);
+});
+
+app.use((err, req, res) => {
+	console.error(err.stack);
+	res.status(500).send(err);
 });
 
 syncAndSeed();

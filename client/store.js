@@ -48,6 +48,7 @@ const fetchProducts = () => {
 
 const saveProductManager = (productId, updatedProduct) => {
 	return dispatch => {
+		console.log('Saving product manager!');
 		axios
 			.put(`/api/products/${productId}`, updatedProduct)
 			.then(() => dispatch(fetchProducts()));
