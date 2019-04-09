@@ -42,21 +42,23 @@ class Product extends Component {
 		const { product } = this.props;
 		const { id } = product;
 		const { name } = this.state;
-		const managerId = this.state.managerId ? this.state.managerId : '';
+		const managerId = this.state.managerId ? this.state.managerId : null;
 		// console.log('props: ' + JSON.stringify(this.props, null, 3));
 
 		// ?? this not working since saveProductManger not showing on props - why???
 		// so did axios call below
-		// this.props
-		// 	.saveProductManager(id, { name, managerId })
-		// .catch(ex => console.log(ex));
-
-		axios
-			.put(`/api/products/${id}`, { name, managerId })
-			.then(resp => resp.data)
-			.then(() => console.log('props: ' + JSON.stringify(this.props, null, 3)))
-			.then(prod => this.setState(prod))
+		this.props
+			.saveProductManager(id, { name, managerId })
 			.catch(ex => console.log(ex));
+
+		// tried this because this.props.saveProductManager was undefined
+		// but not sure how to set state so page will update (along with manager count in Nav)
+		// axios
+		// 	.put(`/api/products/${id}`, { name, managerId })
+		// 	.then(resp => resp.data)
+		// 	.then(() => console.log('props: ' + JSON.stringify(this.props, null, 3)))
+		// 	.then(prod => this.setState(prod))
+		// 	.catch(ex => console.log(ex));
 	};
 
 	render() {
@@ -111,9 +113,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchProducts: () => dispatch(fetchProducts())
-		// saveProductManager: (productId, updatedProduct) =>
-		// 	dispatch(saveProductManager(productId, updatedProduct))
+		fetchProducts: () => dispatch(fetchProducts()),
+		saveProductManager: (productId, updatedProduct) =>
+			dispatch(saveProductManager(productId, updatedProduct))
 	};
 };
 
