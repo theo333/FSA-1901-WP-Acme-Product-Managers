@@ -8,10 +8,15 @@ class Products extends Component {
 	constructor(props) {
 		super(props);
 	}
+
+	// componentDidMount() {
+	// 	this.props.fetchProducts();
+	// }
+
 	render() {
 		const { products } = this.props;
 		return (
-			<ul className=''>
+			<ul className='list-group'>
 				{products.map(product => {
 					return <Product key={product.id} product={product} />;
 				})}
@@ -25,5 +30,13 @@ const mapStateToProps = state => {
 		products: state.products
 	};
 };
+const mapDispatchToProps = dispatch => {
+	return {
+		fetchProducts: () => dispatch(fetchProducts())
+	};
+};
 
-export default connect(mapStateToProps)(Products);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Products);

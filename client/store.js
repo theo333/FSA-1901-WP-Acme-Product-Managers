@@ -45,6 +45,15 @@ const fetchProducts = () => {
 			});
 	};
 };
+
+const saveProductManager = (productId, updatedProduct) => {
+	return dispatch => {
+		axios
+			.put(`/api/products/${productId}`, updatedProduct)
+			.then(() => dispatch(fetchProducts()));
+	};
+};
+
 const initialState = {
 	users: [],
 	products: []
@@ -69,4 +78,4 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
-export { store, fetchUsers, fetchProducts };
+export { store, fetchUsers, fetchProducts, saveProductManager };
