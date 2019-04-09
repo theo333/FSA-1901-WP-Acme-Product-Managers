@@ -6,6 +6,8 @@ const { syncAndSeed, User, Product } = require('./db');
 
 const port = process.env.PORT || 3000;
 
+app.use(express.json());
+
 app.get('/app.js', (req, res, next) =>
 	res.sendFile(path.join(__dirname, '../dist', 'main.js'))
 );
@@ -16,13 +18,13 @@ app.get('/', (req, res, next) =>
 
 // api routes
 app.get('/api/users', (req, res, next) => {
-	User.findAll()
+	User.findAll({ order: [['id', 'ASC']] })
 		.then(users => res.send(users))
 		.catch(next);
 });
 
 app.get('/api/products', (req, res, next) => {
-	Product.findAll()
+	Product.findAll({ order: [['id', 'ASC']] })
 		.then(products => res.send(products))
 		.catch(next);
 });
