@@ -14,7 +14,7 @@ const Nav = ({ location, users, products }) => {
 	];
 
 	return (
-		<ul className='nav nav-tabs'>
+		<ul className='nav nav-pills' style={{ marginBottom: 20 }}>
 			{pages.map(page => {
 				const { key, url, name } = page;
 				return (

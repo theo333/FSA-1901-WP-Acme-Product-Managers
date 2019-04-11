@@ -40,7 +40,7 @@ class Product extends Component {
 		const { managerId } = this.props.product;
 
 		return (
-			<li className='list-group'>
+			<li className='list-group-item'>
 				<div>
 					<h6>{product.name}</h6>
 					<form onSubmit={onSave} className='form-group'>
@@ -63,17 +63,17 @@ class Product extends Component {
 								);
 							})}
 						</select>
-						<button
-							className='btn btn-primary'
-							disabled={
-								this.props.product.managerId === this.state.managerId
-									? true
-									: false
-							}
-						>
-							Save
-						</button>
 					</form>
+					<button
+						className='btn btn-primary'
+						disabled={
+							this.props.product.managerId === this.state.managerId
+								? true
+								: false
+						}
+					>
+						Save
+					</button>
 				</div>
 			</li>
 		);
