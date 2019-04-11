@@ -1,11 +1,10 @@
 const findManagers = (users, products) => {
-	return users.reduce((acc, user) => {
-		products.forEach(product => {
-			if (user.id === product.managerId && !acc.includes(user)) {
-				acc.push(user);
-			}
-		});
-		return acc;
+	return products.reduce((acc, product) => {
+		return acc.concat(
+			users.filter(user => {
+				return user.id === product.managerId && !acc.includes(user);
+			})
+		);
 	}, []);
 };
 
