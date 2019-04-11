@@ -23,26 +23,21 @@ const getProducts = products => {
 
 const fetchUsers = () => {
 	return dispatch => {
-		return axios
-			.get('/api/users')
-			.then(resp => resp.data)
-			.then(users => {
-				// console.log('users: ' + JSON.stringify(users, null, 3));
-				const action = getUsers(users);
-				dispatch(action);
-			});
+		return axios.get('/api/users').then(resp => {
+			const users = resp.data;
+			const action = getUsers(users);
+			dispatch(action);
+		});
 	};
 };
 
 const fetchProducts = () => {
 	return dispatch => {
-		axios
-			.get('/api/products')
-			.then(resp => resp.data)
-			.then(products => {
-				const action = getProducts(products);
-				dispatch(action);
-			});
+		axios.get('/api/products').then(resp => {
+			const products = resp.data;
+			const action = getProducts(products);
+			dispatch(action);
+		});
 	};
 };
 

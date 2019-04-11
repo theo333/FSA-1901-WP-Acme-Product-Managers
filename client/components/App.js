@@ -32,8 +32,8 @@ class App extends Component {
 				<Route render={({ location }) => <Nav location={location} />} />
 				<Switch>
 					<Route exact path='/' render={() => <Home openings={openings} />} />
-					<Route exact path='/products' render={() => <Products />} />
-					<Route path='/products:id' render={() => <Products />} />
+					<Route exact path='/products' component={Products} />
+					<Route path='/products:id' component={Products} />
 					<Route path='/users' component={Managers} />
 				</Switch>
 			</Router>

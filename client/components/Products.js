@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchProducts } from '../store';
 import Product from './Product';
 
 class Products extends Component {
 	constructor(props) {
 		super(props);
 	}
-
-	// componentDidMount() {
-	// 	this.props.fetchProducts();
-	// }
 
 	render() {
 		const { products } = this.props;
@@ -30,13 +25,5 @@ const mapStateToProps = state => {
 		products: state.products
 	};
 };
-const mapDispatchToProps = dispatch => {
-	return {
-		fetchProducts: () => dispatch(fetchProducts())
-	};
-};
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Products);
+export default connect(mapStateToProps)(Products);
