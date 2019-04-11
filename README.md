@@ -1,20 +1,23 @@
-# \_project_name
+## Acme Product Managers
 
 ### View live on Heroku
 
-heroku_url
+https://acme-product-managers-tcm.herokuapp.com/#/users
 
 ### Project Details
 
-- assigned
-- due
-- (?) No beginning repo
-- Replicate this: profs_heroku_url
+- assigned 4/419
+- due 4/9/19
+- No beginning repo
+- Replicate this: https://acme-poduct-managers.herokuapp.com/#/products
 - Description:
+  - Home: Display job openings for Product Managers.
+  - Products: Select Product Manager for each product.
+  - Managers: List Managers
 
 ### Challenges
 
--
+- saving managerId from a dropdown select and then refreshing the state
 
 ### Technologies and Concepts Used
 
@@ -23,6 +26,9 @@ heroku_url
 - Sequelize
 - React
 - React Router
+- Redux
+- React Redux
+- Thunks
 - Axios
 - Deploy to Heroku
 
