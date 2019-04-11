@@ -63,17 +63,18 @@ class Product extends Component {
 								);
 							})}
 						</select>
+						<button
+							className='btn btn-primary'
+							disabled={
+								this.props.product.managerId === this.state.managerId
+									? true
+									: false
+							}
+							style={{ marginTop: 15 }}
+						>
+							Save
+						</button>
 					</form>
-					<button
-						className='btn btn-primary'
-						disabled={
-							this.props.product.managerId === this.state.managerId
-								? true
-								: false
-						}
-					>
-						Save
-					</button>
 				</div>
 			</li>
 		);
